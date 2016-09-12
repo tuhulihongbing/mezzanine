@@ -128,7 +128,8 @@ def search(request, template="search_results.html", extra_context=None):
         search_type = _("Everything")
     else:
         search_type = search_model._meta.verbose_name_plural.capitalize()
-    results = search_model.objects.search(query, for_user=request.user)
+    # results = search_model.objects.search(query, for_user=request.user)
+    results = search_model.objects.search(query, for_user=None)
     paginated = paginate(results, page, per_page, max_paging_links)
     context = {"query": query, "results": paginated,
                "search_type": search_type}
